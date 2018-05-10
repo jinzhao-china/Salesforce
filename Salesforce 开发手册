@@ -1,27 +1,23 @@
-Salesforce 开发手册
+#Salesforce 开发手册
 
-(一) 命名约定
+##(一) 命名约定
 
-代码中的命名均只能以字符开始。
+1. 代码中的命名杜绝完全不规范的缩写，避免望文不知义。
 
-代码中的命名严禁使用拼音与英文混合的方式，更不允许直接使用中文的方式。
+2. 代码中的命名严禁使用拼音与英文混合的方式，更不允许直接使用中文的方式。
 
-类名使用UpperCamelCase风格，必须遵从驼峰形式。
+3. 类名使用UpperCamelCase风格，必须遵从驼峰形式。
 
-方法名、参数名、成员变量、局部变量都统一使用lowerCamelCase风格，必须遵从驼峰形式。
+4. 方法名、参数名、成员变量、局部变量都统一使用lowerCamelCase风格，必须遵从驼峰形式。
 
-常量命名全部大写，单词间用下划线隔开，力求语义表达完整清楚，不要嫌名字长。
+5. 常量命名全部大写，单词间用下划线隔开，力求语义表达完整清楚，不要嫌名字长。
 
-Controller类使用Ctrl结尾; Extension类使用Ext结尾;Trigger类使用Sobject+Trigger结尾;
-Batch类使用Batch结尾;Scheduled类使用Scheduled结尾;Web Service使用WS结尾;
-帮助类使用Util结尾;List类使用List结尾;Map类使用Map结尾;Set类使用Set结尾;
-抽象类命名使用Abstract或Base开头;异常类命名使用Exception结尾;测试类命名以它要测试的类的名称开始，以Test结尾;
 
-工厂Method，新创建的Object对象实例名前加上new或者create作为Prefix
+6. 工厂Method，新创建的Object对象实例名前加上new或者create作为Prefix
 
-杜绝完全不规范的缩写，避免望文不知义。
 
-(二) 常量定义
+
+##(二) 常量定义
 
 不允许出现任何魔法值（即未经定义的常量）直接出现在代码中。
 
@@ -30,32 +26,32 @@ Batch类使用Batch结尾;Scheduled类使用Scheduled结尾;Web Service使用WS�
 long或者Long初始赋值时，必须使用大写的L，不能是小写的l，小写容易跟数字1混淆，造成误解。
 
 
-(三) 格式规约
+##(三) 格式规约
 
-大括号的使用约定。如果是大括号内为空，则简洁地写成{}即可，不需要换行；如果是非空代码块则： 1） 左大括号前不换行。 2） 左大括号后换行。 3） 右大括号前换行。 4） 右大括号后还有else等代码则不换行；表示终止右大括号后必须换行。
+1. 大括号的使用约定。如果是大括号内为空，则简洁地写成{}即可，不需要换行；如果是非空代码块则： 1） 左大括号前不换行。 2） 左大括号后换行。 3） 右大括号前换行。 4） 右大括号后还有else等代码则不换行；表示终止右大括号后必须换行。
 
+````Java
+    If  (i > 0) {     
+        //do something
+    } 
+    else if (i == 0) {     
+        // do something
+     } 
+    else { 
+        // do something 
+    }
+````
 
-If  (i > 0) {     
-//do something
-} 
-else if (i == 0) {     
-// do something
- } 
-else { 
-// do something 
-}
+2. 左括号和后一个字符之间不出现空格；同样，右括号和前一个字符之间也不出现空格。
 
+3. 任何运算符左右必须加一个空格。
 
-左括号和后一个字符之间不出现空格；同样，右括号和前一个字符之间也不出现空格。
-
-任何运算符左右必须加一个空格。
-
-单行字符数限不超过 120 个，超出需要换行时 个，超出需要换行时 遵循如下原则： 
-1） 第二行相对一缩进 4个空格，从第三行开始不再继续缩进参考示例。 
-2） 运算符与下文一起换行。 
-3） 方法调用的点符号与下文一起换行。 
-4） 在多个参数超长，逗号后进行换行。 
-5） 在括号前不要换行，见反例。
+4. 单行字符数限不超过 120 个，超出需要换行时 个，超出需要换行时 遵循如下原则： 
+* 第二行相对一缩进 4个空格，从第三行开始不再继续缩进参考示例。 
+* 运算符与下文一起换行。 
+* 方法调用的点符号与下文一起换行。 
+* 在多个参数超长，逗号后进行换行。 
+* 在括号前不要换行，见反例。
 
 方法参数在定义和传入时，多个参数逗号后边必须加空格。
 
@@ -65,11 +61,11 @@ else { 
 
 方法体内的执行语句组、变量的定义语句组、不同的业务逻辑之间或者不同的语义之间插入一个空行。相同业务逻辑和语义之间不需要插入空行。
 
-#控制语句
+##(三)控制语句
 
-在if/else/for/while/do语句中必须使用大括号，即使只有一行代码
+1. 在if/else/for/while/do语句中必须使用大括号，即使只有一行代码
 
-推荐尽量少用else， if-else的方式可以改写成：
+2. 推荐尽量少用else， if-else的方式可以改写成：
 if(condition){
 ...
 return obj;
@@ -77,20 +73,20 @@ return obj;
 // 接着写else的业务逻辑代码;
 
 
-不要在条件判断中执行其它复杂的语句，将复杂逻辑判断的结果赋值给一个有意义的布尔变量名，以提高可读性。
+3. 不要在条件判断中执行其它复杂的语句，将复杂逻辑判断的结果赋值给一个有意义的布尔变量名，以提高可读性。
 
-方法中需要进行参数校验的场景： 
-1） 调用频次低的方法。 
-2） 执行时间开销很大的方法，参数校验时间几乎可以忽略不计，但如果因为参数错误导致中间执行回退，或者错误，那得不偿失。
-3） 对外提供的开放接口，
+4. 方法中需要进行参数校验的场景： 
+* 调用频次低的方法。 
+* 执行时间开销很大的方法，参数校验时间几乎可以忽略不计，但如果因为参数错误导致中间执行回退，或者错误，那得不偿失。
+* 对外提供的开放接口，
 
-方法中不需要参数校验的场景：
-1） 可能被循环调用的方法
-2） 被声明成private只会被自己代码所调用的方法，如果能够确定调用方法的代码传入参数已经做过检查或者肯定不会有问题，此时可以不校验参数。
+5. 方法中不需要参数校验的场景：
+* 可能被循环调用的方法
+* 被声明成private只会被自己代码所调用的方法，如果能够确定调用方法的代码传入参数已经做过检查或者肯定不会有问题，此时可以不校验参数。
 
 
 
-#注释规约
+##(四)注释规约
 类、类属性、类方法的注释使用/**内容*/格式，不得使用//xxx方式。
 
 方法内部单行注释，在被注释语句上方另起一行，使用//注释。方法内部多行注释使用/* */注释，注意与代码对齐。
@@ -99,37 +95,63 @@ return obj;
 
 好的命名、代码结构是自解释的，注释力求精简准确、表达到位。避免出现注释的一个极端：过多过滥的注释，代码的逻辑一旦修改，修改注释是相当大的负担。
 
-#Best Practise
+##(五) 经验实践 Best Practise
 
-For loop中请不要进行SOQL、DML的操作， 在Loop循环中向List里add要更新的Object对象， 并且在最后进行DML的执行
 
-非构造方法不能使用与当前类相同的名字 Classes should not have non-constructor methods with the same name as the class
-测试类至少应有一个assert方法： System.assert()或者assertEquals()或者AssertNotEquals()
-测试方法要与业务逻辑分开。测试Case不能依赖于实行用户的Local Profile，数据等。
-太多层的分支结构	Deeply nested if..else statements are hard to read
-触发器内避免有逻辑	Avoid logic in triggers
-不允许在测试类中使用@isTest(seeAllData=true) ，因为在测试中会调出甚至修改数据库中的真实数据 @isTest(seeAllData=true) should not be used in Apex unit tests because it opens up the existing database data for unexpected modification by tests
-避免在构造方法和初始方法操作DML avoid making DML operations in Apex class constructor/init method. 
-方法要功能唯一
-避免在DML查询中使用未检查的变量 Avoid the usage of untrusted / unescaped variables in DML queries.
+1. 非构造方法不能使用与当前类相同的名字 Classes should not have non-constructor methods with the same name as the class
+2. 测试类至少应有一个assert方法： System.assert()或者assertEquals()或者AssertNotEquals()
+3. 测试方法要与业务逻辑分开。测试Case不能依赖于实行用户的Local Profile，数据等。
+4. 太多层的分支结构	Deeply nested if..else statements are hard to read
+5. 触发器内避免有逻辑	Avoid logic in triggers
+6. 不允许在测试类中使用@isTest(seeAllData=true) ，因为在测试中会调出甚至修改数据库中的真实数据 @isTest(seeAllData=true) should not be used in Apex unit tests because it opens up the existing database data for unexpected modification by tests
+7. 避免在构造方法和初始方法操作DML avoid making DML operations in Apex class constructor/init method. 
+8. 方法要功能唯一
+9. 避免在DML查询中使用未检查的变量 Avoid the usage of untrusted / unescaped variables in DML queries.
+  ```java
     public void test1(String t1) {
         Database.query('SELECT Id FROM Account' + t1);
     }
-Controller在除了非不得已的情况外，必须指定为 "with sharing"
-SOQL 的Query文作为String作成的时候，使用 String#escapeSingleQuotes 。
-不要硬编码Id在Apex Class中 When deploying Apex code between sandbox and production environments, or installing Force.com AppExchange packages, it is essential to avoid hardcoding IDs in the Apex code. 
+```
+    
+10. Controller在除了非不得已的情况外，必须指定为 "with sharing"
+11. SOQL 的Query文作为String作成的时候，使用 String#escapeSingleQuotes 。
+12. 不要硬编码Id在Apex Class中 When deploying Apex code between sandbox and production environments, or installing Force.com AppExchange packages, it is essential to avoid hardcoding IDs in the Apex code. 
+13. For loop中请不要进行SOQL、DML的操作， 在Loop循环中向List里add要更新的Object对象， 并且在最后进行DML的执行
 
-#Visualforce Page
+14. 
+    * Controller类使用Ctrl结尾; 
+    * Extension类使用Ext结尾;
+    * Trigger类使用Object+Trigger结尾;
+    * Batch类使用Batch结尾;
+    * Scheduled类使用Scheduled结尾;
+    * Web Service使用WS结尾;
+    * 帮助类使用Util结尾;
+    * List类使用List结尾;
+    * Map类使用Map结尾;
+    * Set类使用Set结尾;
+    * 抽象类命名使用Abstract或Base开头;
+    * 异常类命名使用Exception结尾;
+    * 测试类命名以它要测试的类的名称开始，以Test结尾;
+    
+##(六) Visualforce Page
 
 
-#Apex Unit Test
+##(七) 单元测试 Apex Unit Test
 
-#ChangeSet
+##(八) ChangeSet
 
 
-#DataLoader
+##(九) DataLoader
 Specify the “Time Zone” this make the create/modify time stamp correct in system.
 
 
+示例
 
+Apex Class
+
+```java
+
+
+
+```
 
